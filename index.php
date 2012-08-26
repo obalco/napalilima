@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>Napalil ma!</title>
+	<title>Vyhladavanie!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
