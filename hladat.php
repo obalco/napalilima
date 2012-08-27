@@ -8,8 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-
+<form method="post">
+				Hladat <input name="hladat" type="text" /><input type="submit" value="Hladat" />
+			</form>
 <?php
+$hladat = $_POST['hladat'];
 mysql_connect("localhost","root","root");
 $result=mysql("napalilima","select * from staznosti where Ako = '$hladat'");
 $pocet=mysql_numrows($result);
