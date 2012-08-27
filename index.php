@@ -11,7 +11,10 @@
   <table>
   	<tr>
   		<td>
-  			<form action="hladat.php">
+  			<img src="images/napalilima_logo.png" alt="Napalili ma Logo" />
+		</td>
+  		<td>
+  			<form action="hladat.php" method="post">
 				Hladat <input name="hladat" type="text" /><input type="submit" value="Hladat" />
 			</form>
 		</td>
