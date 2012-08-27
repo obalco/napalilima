@@ -8,12 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <table>
+  <table width="1200">
   	<tr>
   		<td>
   			<img src="images/napalilima_logo.png" alt="Napalili ma Logo" />
 		</td>
-  		<td>
+  		<td align="right">
   			<form action="hladat.php" method="post">
 				Hladat <input name="hladat" type="text" /><input type="submit" value="Hladat" />
 			</form>
@@ -24,13 +24,9 @@
        <div>Popis sluzby<div>
       </td>
     <td>
-    
- 
-
-
 <?php
 	echo '<form method="post">
-     		 �o/Kto?:<input type="text"  name="kto"><br/>
+     		 Co/Kto?:<input type="text"  name="kto"><br/>
             Ako/Cim:<input type="text" name="content" width="200" rows="5" cols="50"><br/>
             Nick:<input type="text" name="nick"><br />  
             Kedy:<input type="text" name="kedy"><br />
