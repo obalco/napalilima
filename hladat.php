@@ -10,7 +10,7 @@
 <body>
 <form method="post">
 				Hladat <input name="hladat" type="text" /><input type="submit" value="Hladat" />
-			</form>
+</form>
 <?php
 $hladat = $_POST['hladat'];
 mysql_connect("localhost","root","root");
