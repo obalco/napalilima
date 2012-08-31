@@ -11,6 +11,7 @@
 
 <?php
 echo "zmena";
+echo "zmena2";
 mysql_connect("localhost","root","root");
 $result=mysql("napalilima","select * from staznosti");
 $pocet=mysql_numrows($result);
