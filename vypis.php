@@ -10,6 +10,7 @@
 <body>
 
 <?php
+echo "zmena";
 mysql_connect("localhost","root","root");
 $result=mysql("napalilima","select * from staznosti");
 $pocet=mysql_numrows($result);
