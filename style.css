@@ -1,4 +1,27 @@
-
 body {
 background: url(images/bg.jpg) repeat;
+font-family: Calibri, Arial, Times New Roman;
+font-size: 14px;
+}
+
+div.staznost{
+  top:100px;
+  left:300px;
+  padding-left:20px;
+  padding-top:5px;
+  position:absolute;
+  width: 500px;
+  background: gray;
+  border-radius: 15px;
+  -webkit-box-shadow:0 0 20px gray;
+  -khtml-box-shadow:0 0 20px gray;
+  -moz-box-shadow:0 0 20px gray;
+  box-shadow:0 0 20px gray;
+}
+
+div.description{
+	padding-left:40px;
+	padding-top:40px;
+	position:absolute;
+	width: 240px;
 }
