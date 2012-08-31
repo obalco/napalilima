@@ -20,12 +20,13 @@
       Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom
       </div>
       <div class="staznost">
+   
       <?php
         echo '<form method="post">
-     		Co/Kto?:<input type="textarea" width="200" name="kto"><br/>
-            Ako/Cim:<input type="textarea" name="content" width="200" rows="5" cols="50"><br/>
-            Nick:<input type="text" name="nick"><br />  
-            Kedy:<input type="text" name="kedy"><br />
+            Co/Kto?:<input type="textarea" width="450" name="kto"><br/>
+            Ako/Cim:<input type="textarea" name="content" rows="5" cols="50"><br/>
+            Nick:<input type="text" name="nick"> 
+            Kedy:<input type="text" name="kedy">
             E-mail:<input type="text" name="mail"><br/>
             <input type="submit" value="Send" name="send">
             <input type="reset" value="Reset">

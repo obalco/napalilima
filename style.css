@@ -5,12 +5,12 @@ font-size: 14px;
 }
 
 div.staznost{
-  top:100px;
-  left:300px;
+  top:150px;
+  left:400px;
   padding-left:20px;
   padding-top:5px;
   position:absolute;
-  width: 500px;
+  width: 600px;
   background: gray;
   border-radius: 15px;
   -webkit-box-shadow:0 0 20px gray;
@@ -19,9 +19,21 @@ div.staznost{
   box-shadow:0 0 20px gray;
 }
 
-div.description{
-	padding-left:40px;
-	padding-top:40px;
+div.popis{
+	top: 150px;
+	left: 100px;
 	position:absolute;
 	width: 240px;
+}
+
+.logo{
+  top: 50pxpx;
+	left: 100px;
+	position:absolute;
+}
+
+.hladat{
+  top: 40px;
+	left: 800px;
+	position:absolute;
 }
