@@ -6,6 +6,7 @@
 	<title>Napalil ma!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="style2.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery.autocomplete.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
@@ -21,38 +22,43 @@
 </script>
 </head>
 <body>
-<form method="post">
-				Hladat <input name="hladat" type="text" id="staznost" /><input type="submit" value="Hladať" />
+<form method="post" action="">
+				Hladať <input name="hladat" type="text" id="staznost" /><input name="search" type="submit" value="Hladať" />
 </form>
 <?php
+	if(isset($_POST['search'])){
+		include('db.php');
+		$staznost =mysql_real_escape_string($_POST['hladat']);
 
-include('db.php');
-$sql="SELECT * FROM staznosti  WHERE staznost=".mysql_real_escape_string($_POST['hladat']);
-$res=mysql_query($sql);
+		$sql="SELECT * FROM staznosti WHERE staznost='$staznost'";
+		$res=mysql_query($sql);
 
-$pocet=mysql_num_rows($res);
-echo 'V tabulke "Napalili ma" je '.$pocet.' staznosti.';
-echo '<table border="1">';
- $i=0;
- while($zaznam = mysql_fetch_assoc($res))
-{
-				$staznost_na   = $zaznam['staznost_na'];
-				$staznost 	   = $zaznam['staznost'];
-				$staznost_kedy = $zaznam['staznost_kedy'];
-				$nick 		   = $zaznam['nick'];
-				$email		   = $zaznam['email'];
-				$i++;
+		$pocet=mysql_num_rows($res);
 
-echo '<tr>';
-echo '<td>'.$i.'.'.'</td>';
-echo '<td align="center">'.$staznost_na.'</td>';
-echo '<td>'.$staznost.'</td>';
-echo '<td>'.$staznost_kedy.'</td>';
-echo '<td>'.$nick.'</td>';
-echo '<td align="right">'.$email.'</td>';
-echo '</tr>';
-}
-mysql_close();
+		
+		$i=0;
+		echo '<div id="pole_staznosti">';
+		
+		while($zaznam = mysql_fetch_assoc($res))
+		{
+			$nick 		   = $zaznam['nick'];	
+			$staznost_na   = $zaznam['staznost_na'];
+			$staznost_kedy = $zaznam['staznost_kedy'];
+			$staznost 	   = $zaznam['staznost'];
+			$email		   = $zaznam['email'];
+			$i++;
+
+			echo '<div id="hlavicka_staznosti">';
+				echo '<b>Nick: </b>'.$nick.' | <b>Sťažnosť na: </b>'.$staznost_na.' | <b>Sťažnosť napísaná: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email;
+					echo '<div id="staznost_a">'.$staznost.'</div>';
+			echo'</div>';
+		
+		}
+		
+			echo'</div>';
+		echo '<br />V tabulke "Napalili ma" je '.$pocet.' staznosti.';
+		mysql_close();
+	}
 ?>
 </table>
 </body>

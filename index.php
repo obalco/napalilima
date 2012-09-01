@@ -52,8 +52,6 @@
       if(isset($_POST['send'] ))
       {
      
-				
-				
 				$staznost_na   = $_POST['staznost_na'];
 				$staznost      = $_POST['staznost'];
 				$staznost_kedy = $_POST['staznost_kedy'];
@@ -62,7 +60,7 @@
 				$ip			   = getIpAddress();
 				$message="";
 				
-				//include('db.php');
+				
 				
 				if(!empty($staznost_na)){$bool_staznost_na = true;}		else {$bool_staznost_na = false; $message .= $error[1];}
 				if(!empty($staznost)){$bool_staznost = true;}			else {$bool_staznost = false; $message .= $error[2];}
@@ -71,9 +69,10 @@
 				if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
 				
 				if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true){
+					include('db.php');
 					$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
 										   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
-					$req = mysql_query($sql);
+					$res = mysql_query($sql);
 					header("Location:index.php");
 				}
 				else
