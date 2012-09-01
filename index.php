@@ -6,13 +6,27 @@
 	<title>Vyhladavanie!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="js/jquery.autocomplete.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+<script>
+ $(document).ready(function(){
+  $("#staznost").autocomplete("js/autocomplete.php", {
+         selectFirst: false,
+		 minLength:	2,
+		 minChars: 2,
+		 delay: 100
+		 });
+ });
+</script>
 </head>
 <body>
   <!-- Tabulky ma uz nebavia -->
   <img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" />
       
   <form class="hladat" action="hladat.php" method="post">
-  Hladat <input name="hladat" type="text" /><input type="submit" value="Hladat" />
+  Hladat 
+  <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hladat" />
   </form>
        
    
@@ -22,45 +36,33 @@
       <div class="staznost">
    
       <?php
-        echo '<form method="post">
-            Co/Kto?:<input type="textarea" width="450" name="kto"><br/>
-            Ako/Cim:<input type="textarea" name="content" rows="5" cols="50"><br/>
+	  include('errors.php');
+	  include('functions.php');
+
+	  echo '<form method="post">
+            Co/Kto?:<input type="textarea" width="450" name="staznost_na"><br/>
+            Ako/Cim:<input type="textarea" name="staznost" rows="5" cols="50"><br/>
             Nick:<input type="text" name="nick"> 
-            Kedy:<input type="text" name="kedy">
-            E-mail:<input type="text" name="mail"><br/>
+            Kedy:<input type="text" name="staznost_kedy">
+            E-mail:<input type="text" name="email"><br/>
             <input type="submit" value="Send" name="send">
             <input type="reset" value="Reset">
         </form>';
 		        
       if(isset($_POST['send'] ))
       {
-        
-            @$spojenie = mysql_connect("localhost","root","root");
-              if (!$spojenie)
-              {
-                echo "<p>Nepodarilo sa pripoji� k datab�ze!</p>";
-              }
-              else
-              {
-              	$kto = $_POST['kto'];
-				$content = $_POST['content'];
-				$kedy = $_POST['kedy'];
-				$nick = $_POST['nick'];
-				$mail = $_POST['mail'];
-                @$vysledok = mysql("napalilima",
-                "insert into staznosti values(
-                '$kto', '$content', '$kedy',
-                '$nick', '$mail')");
-                  if (!$vysledok)
-                  {
-                        echo "<p>Nov� z�znam sa nepodarilo prida�!</p>";
-                  }
-                  else
-                  {
-                        echo "<p>Dakujeme za vasu skusenos,urcite pomoze ostatnym.</p>";  
-                  }
-                 mysql_close($spojenie);
-               }
+		include('db.php');
+				
+              	$staznost_na   = $_POST['staznost_na'];
+				$staznost      = $_POST['staznost'];
+				$staznost_kedy = $_POST['staznost_kedy'];
+				$nick 		   = $_POST['nick'];
+				$email 		   = $_POST['email'];
+				$ip			   = getIpAddress(); 
+                
+				$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
+									   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
+				$req = mysql_query($sql);
             } 
       ?>
       </div>
