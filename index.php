@@ -40,20 +40,19 @@
 	  include('functions.php');
 
 	  echo '<form action="send.php" method="post" >
-            Co/Kto?:<input type="textarea" width="450" name="staznost_na"><br/>
-            Ako/Cim:<input type="textarea" name="staznost" rows="5" cols="50"><br/>
+            Co/Kto:<br /><textarea cols="60" rows="1" name="staznost_na"></textarea><br/>
+            Ako/Cim:<br /><textarea name="staznost" rows="5" cols="60"></textarea><br/><br/>
             Nick:<input type="text" name="nick"> 
             Kedy:<input type="text" name="staznost_kedy">
             E-mail:<input type="text" name="email"><br/>
-            <input type="submit" value="Send" name="send">
-            <input type="reset" value="Reset">
+            <p><input type="submit" value="Send" name="send"></p>
         </form>';
 		        
       if(isset($_POST['send'] ))
       {
-		include('db.php');
+      include('db.php');
 				
-              	$staznost_na   = $_POST['staznost_na'];
+        $staznost_na   = $_POST['staznost_na'];
 				$staznost      = $_POST['staznost'];
 				$staznost_kedy = $_POST['staznost_kedy'];
 				$nick 		   = $_POST['nick'];
