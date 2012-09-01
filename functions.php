@@ -60,15 +60,16 @@ function cenzuruj($text){
 
 function cenzura($text){
 $str = "";
-$vulgar = Array ("pica", "kokot", "jebo","pice");
+$vulgar = Array ("pica", "kokot", "jebo","pice"); // Sem dopln slova ktore ta napadnu :D
 $oddelovace = Array(","," ",".",PHP_EOL);
-$uprava="";
+$uprava = "";
 
 	for($i=0; $i<strlen($text);$i++){
 		$str .= $text[$i];
 		if(in_array($text[$i],$oddelovace)){
 			$znak = $text[$i]; 
 			$kontr_slovo = substr($str,0,-1);
+			$kontr_slovo = strtolower($kontr_slovo);
 				if(in_array($kontr_slovo,$vulgar)){
 					for($j=0; $j<strlen($kontr_slovo); $j++ ){
 						$uprava.='*';	
@@ -87,8 +88,7 @@ $uprava="";
 		}
 
 	}
-	//print_r($slova);
-echo $veta=implode("",$slova);
+echo $veta = implode("",$slova);
 }
 
 ?>
