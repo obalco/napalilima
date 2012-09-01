@@ -27,7 +27,7 @@
       
   <form class="hladat" action="hladat.php" method="post">
   Hladat 
-  <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hlada" />
+  <input name="hladat" type="text" id="staznost" size="20"  /><input name="search" type="submit" value="Hlada" />
   </form>       
     <div class="popis">
       Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom
