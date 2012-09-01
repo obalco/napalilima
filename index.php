@@ -39,7 +39,7 @@
 	  include('errors.php');
 	  include('functions.php');
 
-	  echo '<form action="send.php" method="post" >
+	  echo '<form  method="post" >
             Co/Kto:<br /><textarea cols="60" rows="1" name="staznost_na"></textarea><br/>
             Ako/Cim:<br /><textarea name="staznost" rows="5" cols="60"></textarea><br/><br/>
             Nick:<input type="text" name="nick"> 
@@ -50,14 +50,36 @@
 		        
       if(isset($_POST['send'] ))
       {
-      include('db.php');
+     
 				
-        $staznost_na   = $_POST['staznost_na'];
+				
+				$staznost_na   = $_POST['staznost_na'];
 				$staznost      = $_POST['staznost'];
 				$staznost_kedy = $_POST['staznost_kedy'];
 				$nick 		   = $_POST['nick'];
 				$email 		   = $_POST['email'];
-				$ip			   = getIpAddress(); 
+				$ip			   = getIpAddress();
+				$message="";
+				
+				//include('db.php');
+				
+				if(!empty($staznost_na)){$bool_staznost_na = true;}		else {$bool_staznost_na = false; $message .= $error[1];}
+				if(!empty($staznost)){$bool_staznost = true;}			else {$bool_staznost = false; $message .= $error[2];}
+				if(!empty($staznost_kedy)){$bool_staznost_kedy = true;}	else {$bool_staznost_kedy = false; $message .= $error[3];}
+				if(!empty($nick)){$bool_nick = true;}					else {$bool_nick = false; $message .= $error[4];}
+				if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
+				
+				
+				
+				
+echo $message;
+
+
+				
+				
+			
+			
+		
                 
 				$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
 									   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
