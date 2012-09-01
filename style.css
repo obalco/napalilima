@@ -38,6 +38,37 @@ div.popis{
 	left: 100px;
 	position:absolute;
 	width: 240px;
+	padding-left:20px;
+  padding-top:5px;
+  
+	background-image: linear-gradient(bottom, rgb(247,255,0) 0%, rgb(255,0,0) 73%);
+background-image: linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -o-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(0,136,255)),
+	color-stop(1, rgb(13,255,0))
+);
+
+  border-radius: 15px;
+  -webkit-box-shadow:0 0 20px gray;
+  -khtml-box-shadow:0 0 20px gray;
+  -moz-box-shadow:0 0 20px gray;
+  box-shadow:0 0 20px gray;
+}
+
+
+p.registration{
+  top: 80px;
+  left: 100px;
+  position: absolute;
+  
 }
 
 .logo{

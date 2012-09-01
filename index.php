@@ -33,8 +33,8 @@
     <div class="popis">
       Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom
       </div>
+    <p class="registration">Vyuzite rozsirene moznosti po zaregistrovani. Je to zadarmo a trva 2 minutky. Click here</p>
       <div class="staznost">
-   
       <?php
 	  include('errors.php');
 	  include('functions.php');
