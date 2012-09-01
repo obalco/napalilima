@@ -26,7 +26,7 @@
   <img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" />
       
   <form class="hladat" action="hladat.php" method="post">
-  Hladat 
+  Hladaù 
   <input name="hladat" type="text" id="staznost" size="20"  /><input name="search" type="submit" value="Hladaù" />
   </form>       
     <div class="popis">
