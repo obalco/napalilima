@@ -41,6 +41,7 @@
 	  session_start();
 	  include('errors.php');
 	  include('functions.php');
+
 		
 	  echo '<form  method="post">
             Co/Kto:<br /><textarea cols="60" rows="1" name="staznost_na"></textarea><br/>
@@ -71,11 +72,12 @@
 				if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
 				
 				if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true){
-					include('db.php');
-					$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
-										   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
-					$res = mysql_query($sql);
-					header("Location:index.php");
+					//include('db.php');
+					
+					//$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
+						//				   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
+					//$res = mysql_query($sql);
+					//header("Location:index.php");
 				}
 				else
 				{
@@ -83,6 +85,7 @@
 				}
 				
 		} 
+		
       ?>
       </div>
       </div>

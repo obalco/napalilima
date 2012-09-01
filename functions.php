@@ -38,4 +38,59 @@ function getIpAddress()
    return $ipadr;
 }
 
+function cenzuruj($text){
+
+  $PoCenzure="";
+  $SpatnaSlova = Array("jebo", "pice", "kokot");
+  $RozdelText = explode(" ", $text);
+  foreach ($RozdelText as $TestovaneSlovo) {
+    foreach ($SpatnaSlova as $SpatneSlovo) {
+      if ($TestovaneSlovo==$SpatneSlovo){
+		$c="";
+			for ($i=0;$i<strlen($TestovaneSlovo);$i++){
+			$c.='*';
+			}
+			$TestovaneSlovo=$c;
+	  }
+    }
+   $PoCenzure=$PoCenzure." ".$TestovaneSlovo;
+  }
+  echo $PoCenzure;
+}
+
+function cenzura($text){
+$str = "";
+$vulgar = Array ("pica", "kokot", "jebo","pice");
+$oddelovace = Array(","," ",".",PHP_EOL);
+$uprava="";
+
+	for($i=0; $i<strlen($text);$i++){
+		$str .= $text[$i];
+		if(in_array($text[$i],$oddelovace)){
+			$znak = $text[$i]; 
+			$kontr_slovo = substr($str,0,-1);
+				if(in_array($kontr_slovo,$vulgar)){
+					for($j=0; $j<strlen($kontr_slovo); $j++ ){
+						$uprava.='*';	
+					}
+					$slova[]=$uprava;
+					$slova[]=$znak;
+					$uprava="";
+					$str="";
+					$znak="";
+				}
+				else{
+					$slova[]=$str;
+					$str="";
+				}
+
+		}
+
+	}
+	//print_r($slova);
+echo $veta=implode("",$slova);
+}
+
 ?>
+
+
