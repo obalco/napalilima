@@ -1,7 +1,29 @@
 body {
-background: url(images/bg.jpg) repeat;
+background: rgb(240,248,255);
+/*background: url(images/bg.jpg) repeat;*/
 font-family: Calibri, Arial, Times New Roman;
 font-size: 14px;
+}
+
+div.hlavicka{
+    background-image: linear-gradient(bottom, rgb(247,255,0) 0%, rgb(255,0,0) 73%);
+background-image: linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -o-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(0,136,255)),
+	color-stop(1, rgb(13,255,0))
+);
+}
+
+div.telo{
+  background: rgb(0,0,0);
 }
 
 div.staznost{
