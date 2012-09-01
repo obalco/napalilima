@@ -21,21 +21,22 @@
 </script>
 </head>
 <body>
-<div class="hlavicka">
-  <!-- Tabulky ma uz nebavia -->
-  <img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" />
+
+  <div id="hlavicka">
+    <!-- Tabulky ma uz nebavia -->
+    <img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" />
       
-  <form class="hladat" action="hladat.php" method="post">
-  Hladat 
-  <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hlada" />
-  </form>       
-    <div class="popis">
+    <form class="hladat" action="hladat.php" method="post">
+    Hladat 
+    <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hlada" />
+    </form> 
+     <p class="registration">Vyuzite rozsirene moznosti po zaregistrovani. Je to zadarmo a trva 2 minutky. Click here</p>       
+  </div>
+  
+  <div id="telo">
+   <div class="popis">
       Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom
       </div>
-      
-</div>
-<div class="telo">
-    <p class="registration">Vyuzite rozsirene moznosti po zaregistrovani. Je to zadarmo a trva 2 minutky. Click here</p>
       <div class="staznost">
       <?php
 	  session_start();
@@ -85,6 +86,7 @@
 		} 
       ?>
       </div>
-      </div>
+  </div>
+
 </body>
 </html>
