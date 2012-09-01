@@ -1,33 +1,31 @@
-body {
-background: rgb(240,248,255);
-/*background: url(images/bg.jpg) repeat;*/
+#container{
+width:1000px; 
+background-position: center;
+text-align: center;
 font-family: Calibri, Arial, Times New Roman;
 font-size: 14px;
 }
 
-div.hlavicka{
-    background-image: linear-gradient(bottom, rgb(247,255,0) 0%, rgb(255,0,0) 73%);
-background-image: linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -o-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -moz-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -webkit-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -ms-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(0,136,255)),
-	color-stop(1, rgb(13,255,0))
-);
+#hlavicka{
+border-bottom: 3px solid blue;
+top: 0px;
+left: 0px;
+position:absolute;
+width: 1000px;
+height: 200px;
+background: rgb(240,248,255);
 }
 
-div.telo{
-  background: rgb(0,0,0);
+#telo{
+  top: 200px;
+  left: 0px; 
+  position:absolute;
+  width:1000px; 
+  height: 600px;
 }
 
 div.staznost{
-  top:150px;
+  
   left:400px;
   padding-left:20px;
   padding-top:5px;
@@ -56,7 +54,7 @@ background-image: -webkit-gradient(
 }
 
 div.popis{
-	top: 150px;
+
 	left: 100px;
 	position:absolute;
 	width: 240px;
@@ -104,3 +102,24 @@ p.registration{
 	left: 800px;
 	position:absolute;
 }
+
+#pole_staznosti{
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	
+	
+	}
+#hlavicka_staznosti{
+	
+	background:white;
+	padding: 5px;
+	-webkit-border-top-left-radius: 8px;-webkit-border-top-right-radius: 8px;-webkit-border-bottom-left-radius: 8px;-webkit-border-bottom-right-radius: 8px;-khtml-border-radius-topleft: 8px;-khtml-border-radius-topright: 8px;
+	-khtml-border-radius-bottomleft: 8px;-khtml-border-radius-bottomright: 8px;-moz-border-radius-topleft: 8px;	-moz-border-radius-topright: 8px;-moz-border-radius-bottomleft: 8px;-moz-border-radius-bottomright: 8px;
+	border-top-left-radius: 8px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;	
+	}
+	
+#staznost_a{ 
+	padding: 0 0 0 40px;
+	}
+

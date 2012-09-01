@@ -6,7 +6,6 @@
 	<title>Napalil ma!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="style2.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery.autocomplete.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
