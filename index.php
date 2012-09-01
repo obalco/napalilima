@@ -26,7 +26,7 @@
       
   <form class="hladat" action="hladat.php" method="post">
   Hladat 
-  <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hladat" />
+  <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hlada" />
   </form>
        
    
@@ -36,10 +36,11 @@
       <div class="staznost">
    
       <?php
+	  session_start();
 	  include('errors.php');
 	  include('functions.php');
-
-	  echo '<form  method="post" >
+		
+	  echo '<form  method="post">
             Co/Kto:<br /><textarea cols="60" rows="1" name="staznost_na"></textarea><br/>
             Ako/Cim:<br /><textarea name="staznost" rows="5" cols="60"></textarea><br/><br/>
             Nick:<input type="text" name="nick"> 
@@ -69,23 +70,18 @@
 				if(!empty($nick)){$bool_nick = true;}					else {$bool_nick = false; $message .= $error[4];}
 				if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
 				
+				if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true){
+					$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
+										   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
+					$req = mysql_query($sql);
+					header("Location:index.php");
+				}
+				else
+				{
+					echo $message;
+				}
 				
-				
-				
-echo $message;
-
-
-				
-				
-			
-			
-		
-                
-				$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
-									   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
-				$req = mysql_query($sql);
-				//header('Location: send.php');
-            } 
+		} 
       ?>
       </div>
 </body>
