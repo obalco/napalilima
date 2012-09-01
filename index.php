@@ -39,7 +39,7 @@
 	  include('errors.php');
 	  include('functions.php');
 
-	  echo '<form method="post">
+	  echo '<form action="send.php" method="post" >
             Co/Kto?:<input type="textarea" width="450" name="staznost_na"><br/>
             Ako/Cim:<input type="textarea" name="staznost" rows="5" cols="50"><br/>
             Nick:<input type="text" name="nick"> 
@@ -63,6 +63,7 @@
 				$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
 									   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
 				$req = mysql_query($sql);
+				//header('Location: send.php');
             } 
       ?>
       </div>
