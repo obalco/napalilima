@@ -71,8 +71,7 @@
 				if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
 				
 				if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true){
-					//include('db.php');
-					
+					include('db.php');
 					$sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
 										   VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
 					$res = mysql_query($sql);
