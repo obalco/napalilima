@@ -55,7 +55,6 @@
 		        
       if(isset($_POST['send'] ))
       {
-     
 				$staznost_na   = $_POST['staznost_na'];
 				$staznost      = $_POST['staznost'];
 				$staznost_kedy = $_POST['staznost_kedy'];
