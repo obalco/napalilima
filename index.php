@@ -28,7 +28,7 @@
       
     <form class="hladat" action="hladat.php" method="post">
     Hladat 
-    <input name="hladat" type="text" id="staznost" size="20"  /><input type="submit" value="Hlada" />
+    <input name="hladat" type="text" id="staznost" size="20"  /><input name="search" type="submit" value="Hlada" />
     </form> 
      <p class="registration">Vyuzite rozsirene moznosti po zaregistrovani. Je to zadarmo a trva 2 minutky. Click here</p>       
   </div>

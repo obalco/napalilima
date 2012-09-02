@@ -45,10 +45,11 @@
 			$staznost_kedy = $zaznam['staznost_kedy'];
 			$staznost 	   = $zaznam['staznost'];
 			$email		   = $zaznam['email'];
+			$datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
 			$i++;
 
 			echo '<div id="hlavicka_staznosti">';
-				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù napÌsan·: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email;
+				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum." hod.";
 					echo '<div id="staznost_a">'.$staznost.'</div>';
 			echo'</div>';
 		
