@@ -63,9 +63,7 @@
 				$email 		   = $_POST['email'];
 				$ip			   = getIpAddress();
 				$message="";
-				
-				
-				
+
 				if(!empty($staznost_na)){$bool_staznost_na = true;}		else {$bool_staznost_na = false; $message .= $error[1];}
 				if(!empty($staznost)){$bool_staznost = true;}			else {$bool_staznost = false; $message .= $error[2];}
 				if(!empty($staznost_kedy)){$bool_staznost_kedy = true;}	else {$bool_staznost_kedy = false; $message .= $error[3];}
@@ -84,8 +82,7 @@
 				{
 					echo $message;
 				}
-		
-				
+	
 		} 
 		
       ?>
