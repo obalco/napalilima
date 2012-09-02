@@ -42,8 +42,7 @@
 	  session_start();
 	  include('errors.php');
 	  include('functions.php');
-
-		
+	
 	  echo '<form  method="post">
             Co/Kto:<br /><textarea cols="60" rows="1" name="staznost_na"></textarea><br/>
             Ako/Cim:<br /><textarea name="staznost" rows="5" cols="60"></textarea><br/><br/>
