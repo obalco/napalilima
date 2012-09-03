@@ -8,26 +8,39 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-
+<form method="post" action="">
+				Hladaù <input name="hladat" type="text" id="staznost" /><input name="search" type="submit" value="Hladaù" />
+</form>
 <?php
-echo "zmena";
-echo "zmena2";
-mysql_connect("localhost","root","root");
-$result=mysql("napalilima","select * from staznosti");
-$pocet=mysql_numrows($result);
-echo 'V tabulke "Napalili ma" je '.$pocet.' staznosti.';
-echo '<table border="1">';
-for($i=0; $i<$pocet; $i++)
-{
-echo '<tr>';
-echo '<td align="center">'.mysql_result($result, $i, "Kto").'</td>';
-echo '<td>'.mysql_result($result, $i, "Ako").'</td>';
-echo '<td>'.mysql_result($result, $i, "Kedy").'</td>';
-echo '<td>'.mysql_result($result, $i, "Nick").'</td>';
-echo '<td align="right">'.mysql_result($result, $i, "Mail").'</td>';
-echo '</tr>';
-}
-mysql_close();
+		include('db.php');
+
+		$sql="SELECT * FROM staznosti";
+		$res=mysql_query($sql);
+
+		$pocet=mysql_num_rows($res);
+
+		
+		$i=0;
+		echo '<div id="pole_staznosti">';
+		
+		while($zaznam = mysql_fetch_assoc($res))
+		{
+			$nick 		   = $zaznam['nick'];	
+			$staznost_na   = $zaznam['staznost_na'];
+			$staznost_kedy = $zaznam['staznost_kedy'];
+			$staznost 	   = $zaznam['staznost'];
+			$email		   = $zaznam['email'];
+			$datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
+			$i++;
+
+			echo '<div id="hlavicka_staznosti">';
+				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
+					echo '<div id="staznost_a">'.$staznost.'</div>';
+			echo'</div>';
+		
+		}
+	echo'</div>';
+		mysql_close();
 ?>
 </table>
 </body>

@@ -49,14 +49,12 @@
 			$i++;
 
 			echo '<div id="hlavicka_staznosti">';
-				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum." hod.";
+				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
 					echo '<div id="staznost_a">'.$staznost.'</div>';
 			echo'</div>';
 		
 		}
-		
-			echo'</div>';
-		echo '<br />V tabulke "Napalili ma" je '.$pocet.' staznosti.';
+	echo'</div>';
 		mysql_close();
 	}
 ?>
