@@ -6,10 +6,23 @@
 	<title>Napalil ma|Vypis!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="js/jquery.autocomplete.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+<script>
+ $(document).ready(function(){
+  $("#staznost").autocomplete("js/autocomplete.php", {
+         selectFirst: false,
+		 minLength:	2,
+		 minChars: 2,
+		 delay: 100
+		 });
+ });
+</script>
 </head>
 <body>
-<form method="post" action="">
-				Hladať <input name="hladat" type="text" id="staznost" /><input name="search" type="submit" value="Hladať" />
+ <form class="hladat" action="hladat.php" method="post">
+				Hladať <input name="hladat" type="text" id="staznost" size="20"  /><input name="search" type="submit" value="Hladať" />
 </form>
 <?php
 		include('db.php');

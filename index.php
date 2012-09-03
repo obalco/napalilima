@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>Vyhladavanie!</title>
+	<title>Napálili ma !</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250" >
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="js/jquery.autocomplete.css" />
@@ -80,7 +80,33 @@
 					echo $message;
 				}
 		} 
+
+		$sql="SELECT * FROM staznosti";
+		$res=mysql_query($sql);
+
+		$pocet=mysql_num_rows($res);
+
 		
+		$i=0;
+		echo '<div id="pole_staznosti">';
+		
+		while($zaznam = mysql_fetch_assoc($res))
+		{
+			$nick 		   = $zaznam['nick'];	
+			$staznost_na   = $zaznam['staznost_na'];
+			$staznost_kedy = $zaznam['staznost_kedy'];
+			$staznost 	   = $zaznam['staznost'];
+			$email		   = $zaznam['email'];
+			$datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
+			$i++;
+
+			echo '<div id="hlavicka_staznosti">';
+				echo '<b>Nick: </b>'.$nick.' | <b>Sťažnosť na: </b>'.$staznost_na.' | <b>Sťažnosť na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>Dátum odoslania: </b>'.$datum;
+					echo '<div id="staznost_a">'.$staznost.'</div>';
+			echo'</div>';
+		
+		}
+	echo'</div>';
       ?>
       </div>
   </div>
