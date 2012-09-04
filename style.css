@@ -1,36 +1,36 @@
-#container{
-width:1000px; 
-background-position: center;
-text-align: center;
-font-family: Calibri, Arial, Times New Roman;
+body{
+background: url(images/bg.jpg);
+background-repeat: repeat;
+font-family: Calibri, Veranda, Arial;
 font-size: 14px;
 }
 
-#hlavicka{
-border-bottom: 3px solid blue;
-top: 0px;
-left: 0px;
-position:absolute;
-width: 1000px;
-height: 200px;
-background: rgb(240,248,255);
+table.main_table{
+   text-align: left; 
+	width: 1000px;
+	background: url(images/bg2.jpg);
+  -webkit-box-shadow:0 0 10px gray;
+  -khtml-box-shadow:0 0 10px gray;
+  -moz-box-shadow:0 0 10px gray;
+  box-shadow:0 0 10px gray;
 }
 
-#telo{
-  top: 200px;
-  left: 0px; 
-  position:absolute;
-  width:1000px; 
-  height: 600px;
+td.logo{
+	
+}
+
+td.hlavicka{
+
 }
 
 div.staznost{
-  
-  left:400px;
+font-size: 16px;
+font-weight: bold;
+  text-align: left;
   padding-left:20px;
-  padding-top:5px;
-  position:absolute;
-  width: 600px;
+  padding-top:10px;
+  padding-bottom:10px;
+  width: 800px;
   background-image: linear-gradient(bottom, rgb(247,255,0) 0%, rgb(255,0,0) 73%);
 background-image: linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
 background-image: -o-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
@@ -47,71 +47,35 @@ background-image: -webkit-gradient(
 );
 
   border-radius: 15px;
-  -webkit-box-shadow:0 0 20px gray;
-  -khtml-box-shadow:0 0 20px gray;
-  -moz-box-shadow:0 0 20px gray;
-  box-shadow:0 0 20px gray;
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
 }
 
-div.popis{
+td.vypis{
 
-	left: 100px;
-	position:absolute;
-	width: 240px;
-	padding-left:20px;
-  padding-top:5px;
-  
-	background-image: linear-gradient(bottom, rgb(247,255,0) 0%, rgb(255,0,0) 73%);
-background-image: linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -o-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -moz-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -webkit-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-background-image: -ms-linear-gradient(bottom, rgb(0,136,255) 0%, rgb(13,255,0) 100%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(0,136,255)),
-	color-stop(1, rgb(13,255,0))
-);
-
-  border-radius: 15px;
-  -webkit-box-shadow:0 0 20px gray;
-  -khtml-box-shadow:0 0 20px gray;
-  -moz-box-shadow:0 0 20px gray;
-  box-shadow:0 0 20px gray;
 }
 
-
-p.registration{
-  top: 80px;
-  left: 100px;
-  position: absolute;
-  
-}
-
-.logo{
-  top: 50pxpx;
-	left: 100px;
-	position:absolute;
-}
+td.popis{
+padding-bottom: 20px;
+padding-top: 20px;
+  }
 
 .hladat{
-  top: 40px;
-	left: 800px;
-	position:absolute;
+
+  text-align: right;
 }
 
 #pole_staznosti{
-	width:900px;
+	width:1000px;
 	margin-left:auto;
 	margin-right:auto;
-	
-	
 	}
 #hlavicka_staznosti{
-	
+  -webkit-box-shadow:0 0 20px gray;
+  -khtml-box-shadow:0 0 20px gray;
+  -moz-box-shadow:0 0 20px gray;
+  box-shadow:0 0 20px gray;		
 	background:white;
 	padding: 5px;
 	-webkit-border-top-left-radius: 8px;-webkit-border-top-right-radius: 8px;-webkit-border-bottom-left-radius: 8px;-webkit-border-bottom-right-radius: 8px;-khtml-border-radius-topleft: 8px;-khtml-border-radius-topright: 8px;
@@ -120,5 +84,10 @@ p.registration{
 	}
 	
 #staznost_a{ 
-	padding: 0 0 0 40px;
+	
 	}
+	
+p.pata{
+	position: center relative;
+	vertical-align: bottom;
+}
