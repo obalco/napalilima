@@ -5,7 +5,7 @@ include('/../db.php');
  $q=strtolower($_GET['q']);
  $my_data=mysql_real_escape_string($q);
 
- $sql="SELECT staznost FROM staznosti WHERE staznost LIKE '$my_data%'";
+ $sql="SELECT staznost FROM staznosti WHERE staznost LIKE '%$my_data%'";
  $result = mysql_query($sql);
  $poc=mysql_num_rows($result);
  
