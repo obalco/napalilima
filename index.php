@@ -96,7 +96,7 @@
         <?php
           include('db.php');
 
-          $sql="SELECT * FROM staznosti";
+          $sql="SELECT * FROM staznosti order BY id LIMIT 10";
           $res=mysql_query($sql);
           $pocet=mysql_num_rows($res);
           
