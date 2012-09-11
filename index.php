@@ -28,20 +28,20 @@
       <td class="hlavicka">
         <a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /></a>
       </td>
-      <td class="hlavicka">
-        <form class="hladat" action="hladat.php" method="post">
-        Hladat <input name="hladat" type="text" id="staznost" size="20" /><input name="search" type="submit" value="Hlada" />
+      <td class="hladat">
+        <form action="hladat.php" method="post">
+          <input name="hladat" type="text" size="20"  />&nbsp;<input name="search" type="submit" value="Hladat" />
         </form>
       </td>
     <tr/>
     <tr>
-      <td colspan="2" class="popis">
-        Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom
+      <td colspan="2">
+        <p id="popis">Vyuite monos ventilova svoj hnev a pomôte inım vyhnú sa problémom</p>
       </td>
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <div class="staznost">
+        <div id="staznost">
           <?php
             session_start();
             include('errors.php');
@@ -53,7 +53,7 @@
                     Nick: <input type="text" name="nick" cols="35"> 
                     Kedy: <input type="text" name="staznost_kedy" cols="35">
                     E-mail: <input type="text" name="email" cols="35"><br/>
-                    <p><input type="submit" value="Odosla sanos" name="send"></p>
+                    <p align="center"><input type="submit" id="button" value="Odosla sanos" name="send"></p>
                   </form></div>';
                 
             if(isset($_POST['send'] ))
@@ -89,8 +89,8 @@
       </td>
     </tr>
     <tr>
-      <td class="popis">
-        Preèíajte si najnovšie sanosti
+      <td>
+        <p id="popis">Preèíajte si najnovšie sanosti</p>
       </td>
     </tr>
         <?php
@@ -113,9 +113,9 @@
               $datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
               $i++;
 
-              echo '<tr><td id="vypis" colspan="2"><div id="hlavicka_staznosti">';
+              echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
               echo '<b>Nick: </b>'.$nick.' | <b>Sanos na: </b>'.$staznost_na.' | <b>Sanos na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>Dátum odoslania: </b>'.$datum;
-              echo '<div id="staznost_a">'.$staznost.'</div>';
+              echo '<p id="staznost_a">'.$staznost.'</p>';
               echo'</div></td></tr>';
            }
          echo'</div>';

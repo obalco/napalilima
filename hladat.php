@@ -22,7 +22,7 @@
 </head>
 <body>
 <form method="post" action="">
-				Hladaù <input name="hladat" type="text" id="staznost" /><input name="search" type="submit" value="Hladaù" />
+				Hladaù <input name="hladat" type="text"/><input name="search" type="submit" value="Hladaù" />
 </form>
 <?php
 	if(isset($_POST['search'])){
