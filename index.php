@@ -95,7 +95,7 @@
     </tr>
         <?php
           include('db.php');
-
+                  
           $sql="SELECT * FROM staznosti order BY id DESC LIMIT 10 ";
           $res=mysql_query($sql);
           $pocet=mysql_num_rows($res);
@@ -116,9 +116,23 @@
               echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
               echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù kedy: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
               echo '<p id="staznost_a">'.$staznost.'</p>';
-              echo'</div></td></tr>';
+              echo'</div>';
            }
          echo'</div>';
+         
+         $sql="SELECT * FROM staznosti ";
+         $res=mysql_query($sql);
+         $pocet=mysql_num_rows($res);
+         
+         if($pocet>10) 
+           {
+            echo '<p><a href="vypis.php">œalej</a></p></td></tr>';
+           }
+           else
+           {
+            echo '</td></tr>';
+           }
+           
       ?>
     </td>
   </tr>
