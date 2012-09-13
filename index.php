@@ -28,10 +28,10 @@
       <td class="hlavicka">
         <a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /></a>
       </td>
-      <td class="hladat">
+      <td>
         <form action="hladat.php" method="post">
-          <input name="hladat" type="text" size="20"  />&nbsp;<input name="search" type="submit" value="Hladat" />
-        </form>
+				<input name="hladat" type="text" id="staznost_a" size="20"  />&nbsp;<input name="search" type="submit" value="Hlada" />
+</form>
       </td>
     <tr/>
     <tr>
@@ -96,7 +96,7 @@
         <?php
           include('db.php');
 
-          $sql="SELECT * FROM staznosti order BY id LIMIT 10";
+          $sql="SELECT * FROM staznosti order BY id DESC LIMIT 10 ";
           $res=mysql_query($sql);
           $pocet=mysql_num_rows($res);
           

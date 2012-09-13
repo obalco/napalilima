@@ -27,7 +27,7 @@
 <?php
 		include('db.php');
 
-		$sql="SELECT * FROM staznosti";
+		$sql="SELECT * FROM staznosti ORDER BY ID DESC";
 		$res=mysql_query($sql);
 
 		$pocet=mysql_num_rows($res);
