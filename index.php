@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 <script>
  $(document).ready(function(){
-  $("#staznost").autocomplete("js/autocomplete.php", {
+  $("#hladat").autocomplete("js/autocomplete.php", {
          selectFirst: false,
 		 minLength:	2,
 		 minChars: 2,
@@ -28,10 +28,10 @@
       <td class="hlavicka">
         <a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /></a>
       </td>
-      <td>
+      <td align="right">
         <form action="hladat.php" method="post">
-				<input name="hladat" type="text" id="staznost_a" size="20"  />&nbsp;<input name="search" type="submit" value="Hlada" />
-</form>
+          <input name="hladat" type="text" id="hladat" size="20"  />&nbsp;<input name="search" type="submit" value="Hlada" />
+        </form>
       </td>
     <tr/>
     <tr>
@@ -41,7 +41,7 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <div id="staznost">
+        <div id="nova_staznost">
           <?php
             session_start();
             include('errors.php');
@@ -126,19 +126,15 @@
          
          if($pocet>10) 
            {
-            echo '<p><a href="vypis.php">Ïalej</a></p></td></tr>';
+            echo '<p><a href="vypis.php">Ïalej</a></p>';
            }
-           else
-           {
-            echo '</td></tr>';
-           }
-           
       ?>
+      <p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
+      and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
     </td>
   </tr>
 </tbody>
 </table>
-<p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
-and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
+
 </body>
 </html>

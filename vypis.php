@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 <script>
  $(document).ready(function(){
-  $("#staznost").autocomplete("js/autocomplete.php", {
+  $("#hladat").autocomplete("js/autocomplete.php", {
          selectFirst: false,
 		 minLength:	2,
 		 minChars: 2,
@@ -21,15 +21,24 @@
 </script>
 </head>
 <body>
- <form class="hladat" action="hladat.php" method="post">
-				Hladaù <input name="hladat" type="text" id="staznost" size="20"  /><input name="search" type="submit" value="Hladaù" />
-</form>
-<?php
+<table class="main_table"  align="center">
+  <tbody>
+    <tr>
+      <td class="hlavicka">
+        <a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /></a>
+      </td>
+      <td align="right">
+        <form action="hladat.php" method="post">
+          <input name="hladat" type="text" id="hladat" size="20"  />&nbsp;<input name="search" type="submit" value="Hladaù" />
+        </form>
+      </td>
+    <tr/>
+  <tr>
+    <?php
 		include('db.php');
 
 		$sql="SELECT * FROM staznosti ORDER BY ID DESC";
 		$res=mysql_query($sql);
-
 		$pocet=mysql_num_rows($res);
 
 		
@@ -46,14 +55,19 @@
 			$datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
 			$i++;
 
-			echo '<div id="hlavicka_staznosti">';
-				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
-					echo '<div id="staznost_a">'.$staznost.'</div>';
-			echo'</div>';
+			 echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
+              echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù kedy: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
+              echo '<p id="staznost_a">'.$staznost.'</p>';
+              echo'</div>';
 		
 		}
 	echo'</div>';
 		mysql_close();
 ?>
+<p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
+      and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
+    </td>
+  </tr>
+</tbody>
 </table>
 </body>
