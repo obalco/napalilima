@@ -91,6 +91,13 @@ $uprava = "";
 echo $veta = implode("",$slova);
 }
 
+function getPageLink($i, $page){
+	if($i==$page){
+		return " $i";
+	}
+	return "<a href='" . ( $i !=1 ? "?page=$i" : " . ") . "'> $i </a>";
+}
+
 ?>
 
 

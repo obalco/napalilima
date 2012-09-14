@@ -75,9 +75,15 @@
                 if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true)
                   {
                     include('db.php');
-                    $sql = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
-                            VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
-                    $res = mysql_query($sql);
+                    $sql  = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
+                             VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
+					$res  = mysql_query($sql);
+					$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
+					
+					$sql  = $vys = ""; // pre istotu vynulovanie premennych
+                    $sql  = "INSERT INTO comments (id_staznosti, comment) 
+                             VALUES ('$id_s','komentar')";
+					$vys  = mysql_query($sql);
                     header("Location:index.php");
                   }
                 else
@@ -119,15 +125,37 @@
               echo'</div>';
            }
          echo'</div>';
-         
-         $sql="SELECT * FROM staznosti ";
-         $res=mysql_query($sql);
-         $pocet=mysql_num_rows($res);
-         
-         if($pocet>10) 
+       	 // Stránkovanie 
+		$limit = 2;
+		$page = (isset($_GET['page'])? $_GET['page'] : 1);
+		$neighbors = 3;
+
+        $sql = mysql_query("
+			SELECT SQL_CALC_FOUNDS_ROWS * 
+			FROM staznosti
+			LIMIT $limit OFFSET ".(($page - 1) * $limit));
+        $rows = mysql_result(mysql_query("SELECT FOUND_ROWS()") , 0);
+		 
+		$maxPage = ceil($rows / $limit);
+		echo getPageLink(1, $page);
+		if( $page > $neighbors){
+			echo " ...";
+		}
+		$to = min($maxPage, $page + $neighbors);
+		for($i= max(2, $page - $neighbors + 1 );  $i < $to; $i++){
+			echo getPageLink($i ,$page);
+		}
+		if($page + $neighbors < $maxPage){
+			echo " ...";
+		}
+		if($maxPage > 1){
+			echo getPageLink($maxPage, $page);
+		}
+		 
+         /*if($pocet>10) 
            {
             echo '<p><a href="vypis.php">Ïalej</a></p>';
-           }
+           }*/
       ?>
       <p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
       and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
