@@ -18,6 +18,58 @@
 		 delay: 100
 		 });
  });
+ 
+ 	$(function(){
+
+				// Accordion
+				$("#accordion").accordion({ header: "h3" });
+
+				// Tabs
+				$('#tabs').tabs();
+
+				// Dialog
+				$('#dialog').dialog({
+					autoOpen: false,
+					width: 600,
+					buttons: {
+						"Ok": function() {
+							$(this).dialog("close");
+						},
+						"Cancel": function() {
+							$(this).dialog("close");
+						}
+					}
+				});
+
+				// Dialog Link
+				$('#dialog_link').click(function(){
+					$('#dialog').dialog('open');
+					return false;
+				});
+
+				// Datepicker
+				$('#datepicker').datepicker({
+					inline: true
+				});
+
+				// Slider
+				$('#slider').slider({
+					range: true,
+					values: [17, 67]
+				});
+
+				// Progressbar
+				$("#progressbar").progressbar({
+					value: 20
+				});
+
+				//hover states on the static widgets
+				$('#dialog_link, ul#icons li').hover(
+					function() { $(this).addClass('ui-state-hover'); },
+					function() { $(this).removeClass('ui-state-hover'); }
+				);
+
+			});
 </script>
 </head>
 <body>
@@ -58,21 +110,25 @@
                 
             if(isset($_POST['send'] ))
               {
-                $staznost_na   = $_POST['staznost_na'];
-                $staznost      = $_POST['staznost'];
-                $staznost_kedy = $_POST['staznost_kedy'];
-                $nick 		   = $_POST['nick'];
-                $email 		   = $_POST['email'];
+				$message="";
+                $staznost_na   = mysql_real_escape_string(trim($_POST['staznost_na']));
+                $staznost      = mysql_real_escape_string(trim($_POST['staznost']));
+                $staznost_kedy = mysql_real_escape_string(trim($_POST['staznost_kedy']));
+                //$nick 		   = mysql_real_escape_string(trim($_POST['nick']));
+               // $email 		   = mysql_real_escape_string(trim($_POST['email']));
                 $ip			   = getIpAddress();
-                $message="";
+				
+				// slovo ln spojene s premennou bude oznacovat dlzku retazca premennej
+				// slovo ok budeme spajat s premenou a bude typu boolean
+				$ln_staznost_na = strlen($staznost_na);
+				$ln_staznost    = strlen($staznost);
 
-                if(!empty($staznost_na)){$bool_staznost_na = true;}		else {$bool_staznost_na = false; $message .= $error[1];}
-                if(!empty($staznost)){$bool_staznost = true;}			else {$bool_staznost = false; $message .= $error[2];}
-                if(!empty($staznost_kedy)){$bool_staznost_kedy = true;}	else {$bool_staznost_kedy = false; $message .= $error[3];}
-                if(!empty($nick)){$bool_nick = true;}					else {$bool_nick = false; $message .= $error[4];}
-                if(!empty($email)){$bool_email = true;}					else {$bool_email = false; $message .= $error[5];}
+				if($ln_staznost_na <3 && $ln_staznost_na > 20) {$ok_staznost_na = true; } else {$ok_staznost_na = false;$message.=$error[6];}
+				if($ln_staznost <5 && $ln_staznost > 200) {$ok_staznost = true; } 		  else {$ok_staznost = false; $message.=$error[7];}
+				// blo by fajn keby nick a mail sa dava do session :) teda pri logovaní :)
+				
             
-                if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true)
+                if ($ok_staznost_na === true && $ok_staznost === true)
                   {
                     include('db.php');
                     $sql  = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
