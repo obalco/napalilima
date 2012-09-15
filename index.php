@@ -125,38 +125,16 @@
               echo'</div>';
            }
          echo'</div>';
-       	 // Stránkovanie 
-		$limit = 2;
-		$page = (isset($_GET['page'])? $_GET['page'] : 1);
-		$neighbors = 3;
-
-        $sql = mysql_query("
-			SELECT SQL_CALC_FOUNDS_ROWS * 
-			FROM staznosti
-			LIMIT $limit OFFSET ".(($page - 1) * $limit));
-        $rows = mysql_result(mysql_query("SELECT FOUND_ROWS()") , 0);
-		 
-		$maxPage = ceil($rows / $limit);
-		echo getPageLink(1, $page);
-		if( $page > $neighbors){
-			echo " ...";
-		}
-		$to = min($maxPage, $page + $neighbors);
-		for($i= max(2, $page - $neighbors + 1 );  $i < $to; $i++){
-			echo getPageLink($i ,$page);
-		}
-		if($page + $neighbors < $maxPage){
-			echo " ...";
-		}
-		if($maxPage > 1){
-			echo getPageLink($maxPage, $page);
-		}
-		 
-         /*if($pocet>10) 
-           {
-            echo '<p><a href="vypis.php">Ïalej</a></p>';
-           }*/
-      ?>
+         
+          $sql="SELECT * FROM staznosti ";
+         $res=mysql_query($sql);
+         $pocet=mysql_num_rows($res);
+         
+         if($pocet>10) 
+            {
+             echo '<p><a href="vypis.php">?alej</a></p>';
+            }
+		?>
       <p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
       and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
     </td>
