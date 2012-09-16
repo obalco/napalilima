@@ -53,7 +53,7 @@
                     Nick: <input type="text" name="nick" cols="35"> 
                     Kedy: <input type="text" name="staznost_kedy" cols="35">
                     E-mail: <input type="text" name="email" cols="35"><br/>
-                    <p align="center"><input type="submit" id="button" value="Odoslaù sùaûnosù" name="send"></p>
+                    <input type="submit" value="Odoslaù sùaûnosù" name="send">
                   </form></div>';
                 
             if(isset($_POST['send'] ))
@@ -81,8 +81,6 @@
 					$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
 					
 					$sql  = $vys = ""; // pre istotu vynulovanie premennych
-                    $sql  = "INSERT INTO comments (id_staznosti, comment) 
-                             VALUES ('$id_s','komentar')";
 					$vys  = mysql_query($sql);
                     header("Location:index.php");
                   }
@@ -122,9 +120,39 @@
               echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
               echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù kedy: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
               echo '<p id="staznost_a">'.$staznost.'</p>';
+              echo '<div>Pridat komentar</div>';
+              echo '<form  method="post">
+                    Meno<br /><textarea cols="50" rows="1" name="autor"></textarea><br/>
+                    Komentar<br /><textarea name="komentar" rows="3" cols="50"></textarea>
+                    <div align="center"><input type="submit" value="Pridaj komentar" name="comment"></div>
+                  </form>';
               echo'</div>';
            }
          echo'</div>';
+         
+          if(isset($_POST['comment'] ))
+              {
+                $autor  = $_POST['autor'];
+                $komentar  = $_POST['komentar'];
+
+             //   if(!empty($autor)){$bool_staznost_na = true;} else {$bool_staznost_na = false; $message .= $error[1];}
+             //  if(!empty($komentar)){$bool_staznost = true;} else {$bool_staznost = false; $message .= $error[2];}
+                
+              //  if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true)
+              //    {
+                    include('db.php');
+                    $sql  = "INSERT INTO comments (id_staznosti, autor, comment, ip) 
+                             VALUES ('1','$autor','$komentar', NOW(), '$ip')";
+					$res  = mysql_query($sql);
+					$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
+					
+					$sql  = $vys = ""; // pre istotu vynulovanie premennych
+                  
+					$vys  = mysql_query($sql);
+                    header("Location:index.php");
+                //  }
+                }
+         
          
           $sql="SELECT * FROM staznosti ";
          $res=mysql_query($sql);
@@ -132,7 +160,7 @@
          
          if($pocet>10) 
             {
-             echo '<p><a href="vypis.php">?alej</a></p>';
+             echo '<p><a href="vypis.php">œalej</a></p>';
             }
 		?>
       <p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>

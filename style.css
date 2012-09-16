@@ -94,13 +94,13 @@ p.pata{
 }
 
 input{
-	border:white;
+	border: black;
 	border-radius:3px;
 	
 }
 
 textarea{
-	border: white;
+	border: black;
 	border-radius: 3px;	
 }
 
