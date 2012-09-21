@@ -18,59 +18,7 @@
 		 delay: 100
 		 });
  });
- 
- 	$(function(){
-
-				// Accordion
-				$("#accordion").accordion({ header: "h3" });
-
-				// Tabs
-				$('#tabs').tabs();
-
-				// Dialog
-				$('#dialog').dialog({
-					autoOpen: false,
-					width: 600,
-					buttons: {
-						"Ok": function() {
-							$(this).dialog("close");
-						},
-						"Cancel": function() {
-							$(this).dialog("close");
-						}
-					}
-				});
-
-				// Dialog Link
-				$('#dialog_link').click(function(){
-					$('#dialog').dialog('open');
-					return false;
-				});
-
-				// Datepicker
-				$('#datepicker').datepicker({
-					inline: true
-				});
-
-				// Slider
-				$('#slider').slider({
-					range: true,
-					values: [17, 67]
-				});
-
-				// Progressbar
-				$("#progressbar").progressbar({
-					value: 20
-				});
-
-				//hover states on the static widgets
-				$('#dialog_link, ul#icons li').hover(
-					function() { $(this).addClass('ui-state-hover'); },
-					function() { $(this).removeClass('ui-state-hover'); }
-				);
-
-			});
-</script>
+ </script>
 </head>
 <body>
 <!-- Tabulky ma uz zas bavia -->
@@ -100,39 +48,36 @@
             include('functions.php');
       
             echo '<form  method="post">
-                    Co/Kto:<br /><textarea cols="100" rows="1" name="staznost_na"></textarea><br/>
-                    Ako/Cim:<br /><textarea name="staznost" rows="5" cols="100"></textarea><br/><br/>
-                    Nick: <input type="text" name="nick" cols="35"> 
-                    Kedy: <input type="text" name="staznost_kedy" cols="35">
-                    E-mail: <input type="text" name="email" cols="35"><br/>
+                    Kto/Co: <br /><input type="text" name="claim_at" cols="35"> <br/>
+                    Ako/Cim:<br /><textarea name="claim" rows="5" cols="100"></textarea><br/><br/>
                     <input type="submit" value="Odoslaù sùaûnosù" name="send">
                   </form></div>';
                 
             if(isset($_POST['send'] ))
               {
 				$message="";
-                $staznost_na   = mysql_real_escape_string(trim($_POST['staznost_na']));
-                $staznost      = mysql_real_escape_string(trim($_POST['staznost']));
-                $staznost_kedy = mysql_real_escape_string(trim($_POST['staznost_kedy']));
-                //$nick 		   = mysql_real_escape_string(trim($_POST['nick']));
-               // $email 		   = mysql_real_escape_string(trim($_POST['email']));
-                $ip			   = getIpAddress();
+                $claim_at   = mysql_real_escape_string(trim($_POST['claim_at']));
+                $claim      = mysql_real_escape_string(trim($_POST['claim']));
+                $claim_date = date("d.m.Y");
+                //$nick 		= mysql_real_escape_string(trim($_POST['nick']));
+                //$email 		= mysql_real_escape_string(trim($_POST['email']));
+                //$ip			= getIpAddress();
 				
 				// slovo ln spojene s premennou bude oznacovat dlzku retazca premennej
 				// slovo ok budeme spajat s premenou a bude typu boolean
-				$ln_staznost_na = strlen($staznost_na);
-				$ln_staznost    = strlen($staznost);
+				$ln_claim_at = strlen($claim_at);
+				$ln_claim    = strlen($claim);
 
-				if($ln_staznost_na <3 && $ln_staznost_na > 20) {$ok_staznost_na = true; } else {$ok_staznost_na = false;$message.=$error[6];}
-				if($ln_staznost <5 && $ln_staznost > 200) {$ok_staznost = true; } 		  else {$ok_staznost = false; $message.=$error[7];}
+				if($ln_claim_at > 3 && $ln_claim_at < 50) {$ok_claim_at = true; } else {$ok_claim_at = false; $message.=$error[1];}
+				if($ln_claim > 5 && $ln_claim < 200) {$ok_claim = true; } 	 	 else {$ok_claim = false; $message.=$error[2];}
 				// blo by fajn keby nick a mail sa dava do session :) teda pri logovanÌ :)
 				
             
-                if ($ok_staznost_na === true && $ok_staznost === true)
+                if ($ok_claim_at === true && $ok_claim === true)
                   {
                     include('db.php');
-                    $sql  = "INSERT INTO staznosti (staznost_na, staznost, staznost_kedy, nick, email, datum_staznost , ip  , browser) 
-                             VALUES ('$staznost_na','$staznost','$staznost_kedy', '$nick', '$email', NOW(), '$ip', 'browser')";
+                    $sql  = "INSERT INTO claims (claim_at, claim, claim_date ) 
+                             VALUES ('$claim_at','$claim','$claim_date')";
 					$res  = mysql_query($sql);
 					$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
 					
@@ -156,7 +101,7 @@
         <?php
           include('db.php');
                   
-          $sql="SELECT * FROM staznosti order BY id DESC LIMIT 10 ";
+          $sql="SELECT * FROM claims order BY id DESC LIMIT 10 ";
           $res=mysql_query($sql);
           $pocet=mysql_num_rows($res);
           
@@ -165,24 +110,19 @@
       
           while($zaznam = mysql_fetch_assoc($res))
             {
-              $nick 		 = $zaznam['nick'];	
-              $staznost_na   = $zaznam['staznost_na'];
-              $staznost_kedy = $zaznam['staznost_kedy'];
-              $staznost 	 = $zaznam['staznost'];
-              $email		 = $zaznam['email'];
-              $datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
+              //$nick 	   = $zaznam['nick'];	
+              $claim_at    = $zaznam['claim_at'];
+             // $claime_date = $zaznam['claime_date']; toto je hlupost z toho pohladu kontorly a podobne kto si bude pamatat daum je to nepodstatne !!!
+              $claim	   = $zaznam['claim'];
+             // $email	   = $zaznam['email'];
+              $claim_date  = $zaznam['claim_date'];
               $i++;
 
               echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
-              echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù kedy: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
-              echo '<p id="staznost_a">'.$staznost.'</p>';
-              echo '<div>Pridat komentar</div>';
-              echo '<form  method="post">
-                    Meno<br /><textarea cols="50" rows="1" name="autor"></textarea><br/>
-                    Komentar<br /><textarea name="komentar" rows="3" cols="50"></textarea>
-                    <div align="center"><input type="submit" value="Pridaj komentar" name="comment"></div>
-                  </form>';
-              echo'</div>';
+              echo "<b>Nick: </b>'.'NICK'.' | <b>Sùaûnosù na: </b>'.$claim_at.' | <b>Sùaûnosù kedy: </b>'.$claim_date.' | <b>E-mail: </b>'.'MAIL'.'" ;
+              echo '<p id="staznost_a">'.$claim.'</p>';
+              echo '<p class="add_comment"><a href="#">Pridaù koment·r</a></p>';
+              
            }
          echo'</div>';
          
@@ -210,7 +150,7 @@
                 }
          
          
-          $sql="SELECT * FROM staznosti ";
+         $sql="SELECT * FROM claims ";
          $res=mysql_query($sql);
          $pocet=mysql_num_rows($res);
          
