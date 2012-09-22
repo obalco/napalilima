@@ -1,3 +1,7 @@
+<?php
+    //error_reporting(1);
+	session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
 
@@ -11,47 +15,56 @@
 <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
 <script>
  $(document).ready(function(){
-  $("#hladat").autocomplete("js/autocomplete.php", {
+    $("#hladat").autocomplete("js/autocomplete.php", {
          selectFirst: false,
 		 minLength:	2,
 		 minChars: 2,
 		 delay: 100
-		 });
+	});
  });
  </script>
 </head>
 <body>
-<!-- Tabulky ma uz zas bavia -->
-<table class="main_table"  align="center">
-  <tbody>
-    <tr>
-      <td class="hlavicka">
-        <a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /></a>
-      </td>
-      <td align="right">
-        <form action="hladat.php" method="post">
-          <input name="hladat" type="text" id="hladat" size="20"  />&nbsp;<input name="search" type="submit" value="Hladaù" />
-        </form>
-      </td>
-    <tr/>
-    <tr>
-      <td colspan="2">
-        <p id="popis">Vyuûite moûnosù ventilovaù svoj hnev a pomÙûte in˝m vyhn˙ù sa problÈmom</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <div id="nova_staznost">
+<?php
+     if (!isset($_SESSION['logged'])){
+		print '<div id="logger"> <div class="logger_inputs"><b><a href="req.php?req=reg">Registr·cia</a> | <a href="req.php?req=log">Prihl·senie</a></b></div></div>';
+	}
+	else
+	{
+		print '<div id="logger"> <div class="logger_inputs"><b><i><u>TU BUDE NICK</u></i> => | Nastavenie | Profil | Odhl·siù | </div></div>';
+	}
+	// </b> <b> | NICK: </b> <input type="text" /> <b> HESLO: </b> <input type="password" / > <input class ="tlacitko" name="log_me" type="submit" value="Log me" />
+	 
+	
+?>
+<div id="container"> <!-- zaciatok containeru!-->
+  <div id="header"> <!-- zaciatok headeru!-->
+	<a href="index.php"><img class="logo" src="images/napalilima_logo.png" alt="Napalili ma Logo" height="70" /> </a>
+		
+  </div><!-- koniec headeru!-->
+		<div id="input_search">
+			<form action="hladat.php" method="post">
+				<input name="hladat" type="text" id="hladat" size="20"  />&nbsp;<input name="search" type="submit" value="Hladaù" />
+			</form>
+		</div>
+  
+  <div id="content"><!-- zaciatok contentu!-->
+  
+        
+   
+       
           <?php
-            session_start();
             include('errors.php');
             include('functions.php');
       
-            echo '<form  method="post">
+            echo '<br />
+			 <div id="nova_staznost"> <!-- zaciatok novej staznosti!-->
+				  <form method="post">
                     Kto/Co: <br /><input type="text" name="claim_at" cols="35"> <br/>
                     Ako/Cim:<br /><textarea name="claim" rows="5" cols="100"></textarea><br/><br/>
                     <input type="submit" value="Odoslaù sùaûnosù" name="send">
-                  </form></div>';
+                  </form>
+			 </div>'; echo'<!-- koniec novej_staznosti!-->';
                 
             if(isset($_POST['send'] ))
               {
@@ -89,15 +102,10 @@
                   {
                     echo $message;
                   }
-              } 
+              }
           ?>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p id="popis">PreËÌùajte si najnovöie sùaûnosti</p>
-      </td>
-    </tr>
+		  
+     <br />
         <?php
           include('db.php');
                   
@@ -106,7 +114,7 @@
           $pocet=mysql_num_rows($res);
           
           $i=0;
-          echo '<div id="pole_staznosti">';
+        echo '<div id="pole_staznosti">';
       
           while($zaznam = mysql_fetch_assoc($res))
             {
@@ -118,14 +126,14 @@
               $claim_date  = $zaznam['claim_date'];
               $i++;
 
-              echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
-              echo "<b>Nick: </b>'.'NICK'.' | <b>Sùaûnosù na: </b>'.$claim_at.' | <b>Sùaûnosù kedy: </b>'.$claim_date.' | <b>E-mail: </b>'.'MAIL'.'" ;
-              echo '<p id="staznost_a">'.$claim.'</p>';
-              echo '<p class="add_comment"><a href="#">Pridaù koment·r</a></p>';
-              
+			  echo'<div id="hlavicka_staznosti"> <!-- zaciatok hlavicka_staznosti!-->';
+				  echo "<b>Nick: </b>'.'NICK'.' | <b>Sùaûnosù na: </b>'.$claim_at.' | <b>Sùaûnosù kedy: </b>'.$claim_date.' | <b>E-mail: </b>'.'MAIL'.'" ;
+				  echo '<p id="staznost_a">'.$claim.'</p>';
+				  echo '<div class="add_comment"><a href="#">Pridaù koment·r</a></div>';
+              echo'</div><!-- koniec hlavicka_staznosti !-->'; 
            }
-         echo'</div>';
-         
+		  
+                
           if(isset($_POST['comment'] ))
               {
                 $autor  = $_POST['autor'];
@@ -136,16 +144,16 @@
                 
               //  if ($bool_staznost_na==true && $bool_staznost==true && $bool_staznost_kedy==true &&  $bool_nick ==true && $bool_email==true)
               //    {
-                    include('db.php');
-                    $sql  = "INSERT INTO comments (id_staznosti, autor, comment, ip) 
-                             VALUES ('1','$autor','$komentar', NOW(), '$ip')";
-					$res  = mysql_query($sql);
-					$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
+                   // include('db.php');
+                    //$sql  = "INSERT INTO comments (autor, comment, ip) 
+                      //       VALUES ('$autor','$komentar', NOW(), '$ip')";
+					//$res  = mysql_query($sql);
+					//$id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
 					
-					$sql  = $vys = ""; // pre istotu vynulovanie premennych
+					//$sql  = $vys = ""; // pre istotu vynulovanie premennych
                   
-					$vys  = mysql_query($sql);
-                    header("Location:index.php");
+					//$vys  = mysql_query($sql);
+                   // header("Location:index.php");
                 //  }
                 }
          
@@ -158,13 +166,22 @@
             {
              echo '<p><a href="vypis.php">œalej</a></p>';
             }
-		?>
-      <p align="center" class="pata">Code and Design by <a href="www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
-      and <a href="www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
-    </td>
-  </tr>
-</tbody>
-</table>
+		echo'</div>';
+		
 
+		?>
+		<br />
+		<div id="pata"> <!-- zaciatok paty!-->
+			  <p align="center" class="pata">Code and Design by <a href="http://www.am.6f.sk" target="_blank"><img src="images/am_logo.png"  height="15" alt="AM PAGE Andrej Majik Logo"></a>
+			  and <a href="http://www.obalco.sk" target="_blank"><img src="images/obalco.png" height="15" alt="OBALCO logo"></a></p>
+	    </div>
+		<br />
+		<!-- koniec paty!-->
+		
+	</div> <!-- ukoncenie contentu!-->
+		
+</div> <!-- ukoncenie containeru!-->
+
+ 
 </body>
 </html>
