@@ -31,7 +31,7 @@
 	}
 	else
 	{
-		print '<div id="logger"> <div class="logger_inputs"><b><i><u>TU BUDE NICK</u></i> => | Nastavenie | Profil | Odhl·siù | </div></div>';
+		print '<div id="logger"> <div class="logger_inputs"><b><i><u>TU BUDE NICK</u></i> => | Nastavenie | Profil | <a href="req.php?req=out">Odhl·siù</a> | </div></div>';
 	}
 	// </b> <b> | NICK: </b> <input type="text" /> <b> HESLO: </b> <input type="password" / > <input class ="tlacitko" name="log_me" type="submit" value="Log me" />
 	 
