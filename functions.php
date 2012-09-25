@@ -98,6 +98,88 @@ function getPageLink($i, $page){
 	return "<a href='" . ( $i !=1 ? "?page=$i" : " . ") . "'> $i </a>";
 }
 
+function log_me($nick,$pass){
+require_once 'errors.php';
+
+	$mess = "";
+	$nick = mysql_real_escape_string(trim($nick));
+	$pass = mysql_real_escape_string(trim($pass));
+
+	$ln_nick = strlen($nick);
+	$ln_pass = strlen($pass);
+	if($ln_nick > 3 && $ln_nick < 20) {$ok_nick=true;} else {$ok_nick=false;}
+	if($ln_pass > 3 && $ln_pass < 20) {$ok_pass=true;} else {$ok_pass=false;}
+	
+	if($ok_nick == true && $ok_pass == true){
+		include_once 'db.php';
+		
+			$sql = "SELECT nick, pass FROM users WHERE nick=md5('$nick') and pass='$pass' ";
+			$req = mysql_query($sql);
+			$poc = mysql_num_rows($req);
+			if($poc == 1){
+				$_SESSION['nick']  = $nick;
+				$_SESSION['loged'] = 1;
+				header("Location: index.php");
+			}
+			else{
+				$mess.="Špatne zadaný nick alebo heslo.";
+			}
+	}
+	else{
+		$mess.="nejaky error o dlzke znakov, pri prihlasovani";
+	}
+	echo $mess;
+
+}
+
+function reg_me($nick,$pass,$email){
+require_once 'errors.php';
+
+	$mess="";
+	$poc=0;
+	$nick = mysql_real_escape_string(trim($nick));
+	$pass = mysql_real_escape_string(trim($pass));
+	$email = mysql_real_escape_string(trim($email));
+
+	$ln_nick = strlen($nick);
+	$ln_pass = strlen($pass);
+	$ln_email = strlen($email);
+	
+	if($ln_nick > 3 && $ln_nick < 20) {$ok_nick=true;} else {$ok_nick=false;}
+	if($ln_pass > 3 && $ln_pass < 20) {$ok_pass=true;} else {$ok_pass=false;}
+	if($ln_email > 8 && $ln_email < 40) {$ok_email=true;} else {$ok_email=false;}
+
+	if($ok_nick == true && $ok_pass == true && $ok_email == true){
+		include_once 'db.php';
+		
+		$sql = "SELECT nick FROM users WHERE nick = '$nick'";
+		$req = mysql_query($sql);
+		$poc = mysql_num_rows($req);
+		if($poc==0){
+			$date = date("d.m.Y");
+			$ip   = getIpAddress();
+			
+			$sql  = $req = "";
+				 
+			$sql  = "INSERT INTO users(pass , nick , email , date , ip) VALUES ('$pass' , md5('$nick') , '$email' , '$date' , '$ip') ";
+			$req  = mysql_query($sql);
+		}
+		if($poc==1){
+			$mess.=$error[6];
+		}
+	}
+	else{
+		if($ln_nick < 3 || $ln_nick > 20) { $mess.=$error[3];}
+		if($ln_pass < 3 || $ln_pass > 20) { $mess.=$error[4];}
+		if($ln_email < 8 || $ln_email > 40) { $mess.=$error[5];}		
+	}
+
+	echo $mess;
+	
+}
+
+
+
 ?>
 
 

@@ -27,9 +27,9 @@
 <?php
 	if(isset($_POST['search'])){
 		include('db.php');
-		$staznost =mysql_real_escape_string($_POST['hladat']);
+		$claim = mysql_real_escape_string($_POST['hladat']);
 
-		$sql="SELECT * FROM staznosti WHERE staznost='$staznost'";
+		$sql="SELECT * FROM claims WHERE claim='$claim'";
 		$res=mysql_query($sql);
 
 		$pocet=mysql_num_rows($res);
@@ -40,17 +40,17 @@
 		
 		while($zaznam = mysql_fetch_assoc($res))
 		{
-			$nick 		   = $zaznam['nick'];	
-			$staznost_na   = $zaznam['staznost_na'];
-			$staznost_kedy = $zaznam['staznost_kedy'];
-			$staznost 	   = $zaznam['staznost'];
-			$email		   = $zaznam['email'];
-			$datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
+			//$nick 		   = $zaznam['nick'];	
+			$claim_at   = $zaznam['staznost_na'];
+			$claim_date = $zaznam['staznost_kedy'];
+			$claim 	   = $zaznam['staznost'];
+			//$email		   = $zaznam['email'];
+			$claim_date         = $zaznam['claim_date'];
 			$i++;
 
 			echo '<div id="hlavicka_staznosti">';
-				echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù na: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
-					echo '<div id="staznost_a">'.$staznost.'</div>';
+				echo '<b>Nick: </b>'.NICK.' | <b>Sùaûnosù na: </b>'.$claim_at.' | <b>Sùaûnosù na: </b>'.$claim_date.' | <b>E-mail: </b>'.MAIL.' | <b>D·tum odoslania: </b>'.$claim_date;
+					echo '<div id="staznost_a">'.$claim.'</div>';
 			echo'</div>';
 		
 		}
