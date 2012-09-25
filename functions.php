@@ -98,6 +98,68 @@ function getPageLink($i, $page){
 	return "<a href='" . ( $i !=1 ? "?page=$i" : " . ") . "'> $i </a>";
 }
 
+function log_me($nick,$pass){
+require_once 'errors.php';
+
+	$mess = "";
+	$nick = mysql_real_escape_string(trim($nick));
+	$pass = mysql_real_escape_string(trim($pass));
+
+	$ln_nick = strlen($nick);
+	$ln_pass = strlen($pass);
+	if($ln_nick > 3 && $ln_nick < 20) {$ok_nick=true;} else {$ok_nick=false;}
+	if($ln_pass > 3 && $ln_pass < 20) {$ok_pass=true;} else {$ok_pass=false;}
+	
+	if($ok_nick == true && $ok_pass == true){
+		include_once 'db.php';
+		$sql = "SELECT count(*) FROM users WHERE nick='$nick'";
+		$req = mysql_query($sql);
+		list($pocet)=mysql_fetch_row($req);
+		if($pocet==0){
+		//pokracovanie nabuduce
+			
+		}
+		else{
+			$mess.="nnick je registrovany";
+		}
+	}
+	else{
+		$mess.="nejaky error o dlzke znakov, pri prihlasovani";
+	}
+	echo $mess;
+
+}
+
+function reg_me($nick,$pass,$email){
+require_once 'errors.php';
+
+	$mess="";
+	$nick = mysql_real_escape_string(trim($nick));
+	$pass = mysql_real_escape_string(trim($pass));
+	$email = mysql_real_escape_string(trim($email));
+
+	$ln_nick = strlen($nick);
+	$ln_pass = strlen($pass);
+	$ln_email = strlen($email);
+
+	
+	if($ln_nick > 3 && $ln_nick < 20) {$ok_nick=true;} else {$ok_nick=false;}
+	if($ln_pass > 3 && $ln_pass < 20) {$ok_pass=true;} else {$ok_pass=false;}
+	if($ln_email > 8 && $ln_email < 40) {$ok_email=true;} else {$ok_email=false;}
+
+	if($ok_nick == true && $ok_pass == true && $ok_email == true){
+		
+	}
+	else{
+		$mess.="";
+	}
+
+	echo $mess;
+	
+}
+
+
+
 ?>
 
 
