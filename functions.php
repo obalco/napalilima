@@ -112,6 +112,7 @@ require_once 'errors.php';
 	
 	if($ok_nick == true && $ok_pass == true){
 		include_once 'db.php';
+<<<<<<< HEAD
 		
 			$sql = "SELECT nick, pass FROM users WHERE nick=md5('$nick') and pass='$pass' ";
 			$req = mysql_query($sql);
@@ -124,6 +125,18 @@ require_once 'errors.php';
 			else{
 				$mess.="Špatne zadaný nick alebo heslo.";
 			}
+=======
+		$sql = "SELECT count(*) FROM users WHERE nick='$nick'";
+		$req = mysql_query($sql);
+		list($pocet)=mysql_fetch_row($req);
+		if($pocet==0){
+		//pokracovanie nabuduce
+			
+		}
+		else{
+			$mess.="nnick je registrovany";
+		}
+>>>>>>> c57a966896655af96a5c140b38c7bdaf749c07f0
 	}
 	else{
 		$mess.="nejaky error o dlzke znakov, pri prihlasovani";
@@ -136,7 +149,10 @@ function reg_me($nick,$pass,$email){
 require_once 'errors.php';
 
 	$mess="";
+<<<<<<< HEAD
 	$poc=0;
+=======
+>>>>>>> c57a966896655af96a5c140b38c7bdaf749c07f0
 	$nick = mysql_real_escape_string(trim($nick));
 	$pass = mysql_real_escape_string(trim($pass));
 	$email = mysql_real_escape_string(trim($email));
@@ -144,12 +160,17 @@ require_once 'errors.php';
 	$ln_nick = strlen($nick);
 	$ln_pass = strlen($pass);
 	$ln_email = strlen($email);
+<<<<<<< HEAD
+=======
+
+>>>>>>> c57a966896655af96a5c140b38c7bdaf749c07f0
 	
 	if($ln_nick > 3 && $ln_nick < 20) {$ok_nick=true;} else {$ok_nick=false;}
 	if($ln_pass > 3 && $ln_pass < 20) {$ok_pass=true;} else {$ok_pass=false;}
 	if($ln_email > 8 && $ln_email < 40) {$ok_email=true;} else {$ok_email=false;}
 
 	if($ok_nick == true && $ok_pass == true && $ok_email == true){
+<<<<<<< HEAD
 		include_once 'db.php';
 		
 		$sql = "SELECT nick FROM users WHERE nick = '$nick'";
@@ -172,6 +193,12 @@ require_once 'errors.php';
 		if($ln_nick < 3 || $ln_nick > 20) { $mess.=$error[3];}
 		if($ln_pass < 3 || $ln_pass > 20) { $mess.=$error[4];}
 		if($ln_email < 8 || $ln_email > 40) { $mess.=$error[5];}		
+=======
+		
+	}
+	else{
+		$mess.="";
+>>>>>>> c57a966896655af96a5c140b38c7bdaf749c07f0
 	}
 
 	echo $mess;

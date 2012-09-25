@@ -31,7 +31,11 @@
 	}
 	else
 	{
+<<<<<<< HEAD
 		print '<div id="logger"> <div class="logger_inputs"><b><i><u>TU BUDE NICK</u></i> => | Nastavenie | Profil | <a href="req.php?req=out">Odhl·siù</a> | </div></div>';
+=======
+		print '<div id="logger"> <div class="logger_inputs"><b><i><u>TU BUDE NICK</u></i> => | Nastavenie | Profil | Odhl·siù | </div></div>';
+>>>>>>> c57a966896655af96a5c140b38c7bdaf749c07f0
 	}
 	// </b> <b> | NICK: </b> <input type="text" /> <b> HESLO: </b> <input type="password" / > <input class ="tlacitko" name="log_me" type="submit" value="Log me" />
 	 
