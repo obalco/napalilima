@@ -96,6 +96,7 @@
         <div id="nova_staznost">
           <?php
             session_start();
+            include('db.php');
             include('errors.php');
             include('functions.php');
       
@@ -111,29 +112,29 @@
             if(isset($_POST['send'] ))
               {
                 $message="";
-                $claim_at   = mysql_real_escape_string(trim($_POST['staznost_na']));
-                $claim      = mysql_real_escape_string(trim($_POST['staznost']));
-                $claim_when = mysql_real_escape_string(trim($_POST['staznost_kedy']));
+                $claim_at   = mysql_real_escape_string(trim($_POST['claim_at']));
+                $claim      = mysql_real_escape_string(trim($_POST['claim']));
+                $claim_when = mysql_real_escape_string(trim($_POST['claim_when']));
                 $nick 		   = mysql_real_escape_string(trim($_POST['nick']));
                 $email 		   = mysql_real_escape_string(trim($_POST['email']));
                 $ip			   = getIpAddress();
-				
-				
+          
+                $id_u =     1;
 				// slovo ln spojene s premennou bude oznacovat dlzku retazca premennej
 				// slovo ok budeme spajat s premenou a bude typu boolean
-				$ln_staznost_na = strlen($staznost_na);
-				$ln_staznost    = strlen($staznost);
+				$ln_claim_at = strlen($claim_at);
+				$ln_claim    = strlen($claim);
 
-				if($ln_staznost_na <3 && $ln_staznost_na > 50) {$ok_staznost_na = true; } else {$ok_staznost_na = false;$message.=$error[6];}
-				if($ln_staznost <5 && $ln_staznost > 200) {$ok_staznost = true; } 		  else {$ok_staznost = false; $message.=$error[7];}
+				if($ln_claim_at >3 && $ln_claim_at < 50) {$ok_claim_at = true; } else {$ok_claim_at = false;$message.=$error[6];}
+				if($ln_claim >5 && $ln_claim < 200) {$ok_claim = true; } 		  else {$ok_claim = false; $message.=$error[7];}
 			
 				// blo by fajn keby nick a mail sa dava do session :) teda pri logovaní :)
 				
             
-            if ($ok_staznost_na === true && $ok_staznost === true)
+            if ($ok_claim_at === true && $ok_claim === true)
                   {
-                    include('db.php');
-                    $sql  = "INSERT INTO claims (id_u, who, how, date, ,ip  ,sys_date) 
+               
+                    $sql  = "INSERT INTO claims (id_u, who, how, date, ip, sys_date) 
                              VALUES ('$id_u','$claim_at','$claim', '$claim_when', '$ip', NOW())";
                     $res  = mysql_query($sql);
                     $id_s = mysql_insert_id(); // funkcia mysql_insert_id dostava poslednu autoinkrementovanu hodnotu primarneho kluca u nas to je id 
@@ -154,7 +155,7 @@
       </td>
     </tr>
         <?php
-          include('db.php');
+         
                   
           $sql="SELECT * FROM claims order BY id DESC LIMIT 10 ";
           $res=mysql_query($sql);
