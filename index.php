@@ -165,17 +165,16 @@
       
           while($zaznam = mysql_fetch_assoc($res))
             {
-              $nick 		 = $zaznam['nick'];	
-              $staznost_na   = $zaznam['staznost_na'];
-              $staznost_kedy = $zaznam['staznost_kedy'];
-              $staznost 	 = $zaznam['staznost'];
-              $email		 = $zaznam['email'];
-              $datum         = date("d.m.Y \o H:i",strtotime($zaznam['datum_staznost']));
+              $user 		 = $zaznam['id_u'];	
+              $who   = $zaznam['who'];
+              $when = $zaznam['date'];
+              $how 	 = $zaznam['how'];
+              $sys_date         = date("d.m.Y \o H:i",strtotime($zaznam['sys_date']));
               $i++;
 
               echo '<tr><td colspan="2" align="center"><div id="hlavicka_staznosti">';
-              echo '<b>Nick: </b>'.$nick.' | <b>Sùaûnosù na: </b>'.$staznost_na.' | <b>Sùaûnosù kedy: </b>'.$staznost_kedy.' | <b>E-mail: </b>'.$email.' | <b>D·tum odoslania: </b>'.$datum;
-              echo '<p id="staznost_a">'.$staznost.'</p>';
+              echo '<b>Nick: </b>'.$user.' | <b>Sùaûnosù na: </b>'.$who.' | <b>Sùaûnosù kedy: </b>'.$when.' | <b>D·tum odoslania: </b>'.$sys_date;
+              echo '<p id="staznost_a">'.$how.'</p>';
               echo'</div>';
            }
          echo'</div>';
